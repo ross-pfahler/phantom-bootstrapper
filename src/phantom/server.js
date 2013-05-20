@@ -63,9 +63,15 @@ exports.create = function(port) {
         console.log('Server: Got request at ' + new Date(), url);
         
         var tmplName = getTmplNameFromUrl(url);
-        var path = fs.workingDirectory + '/src/templates/' + tmplName;
-        
-        var template = fs.read(path);
+        var path = fs.workingDirectory + '/src/phantom/templates/' + tmplName;
+
+        try {
+            var template = fs.read(path);
+        } catch (e) {
+            console.log('could not read from path');
+            response.write('Bad template path');
+            respose.close();
+        }
         var config = getCfgObjectFromUrl(url);
 
         console.log('Server: Rendering template ' + path + ' with config ' + config);
