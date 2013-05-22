@@ -7,6 +7,7 @@ var server = require('./app/server');
 var port = process.argv[2];
 if (!port) {
     console.log('Missing port');
+    process.exit(1);
     return;
 }
 
