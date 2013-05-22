@@ -6,6 +6,10 @@
     "name": "Ross Pfahler",
     "email": "ross@livefyre.com"
   },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
   "version": "1.0.0",
   "dependencies": {
     "express": "3.2.4",
