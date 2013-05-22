@@ -1,2 +1,2 @@
-web: node runserver.js
-worker: node runconsumer.js
+web: node src/runserver.js $PORT
+worker: node src/runconsumer.js
