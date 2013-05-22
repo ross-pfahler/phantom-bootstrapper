@@ -4,6 +4,7 @@
 
 var kue = require('kue');
 var jobs = kue.createQueue();
+var util = require('../util');
 
 /**
  * @param {something} req
@@ -41,6 +42,7 @@ exports.bootstrap = function(req, res) {
         return;
     }
 
+    util.setRedisServer();
     // Just add to queue if all is good.
     jobs.create('bootstrapper', {
         bsType: bsType,
