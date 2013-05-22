@@ -6,7 +6,7 @@
 var kue = require('kue');
 var jobs = kue.createQueue();
 var runner = require('./phantomrunner');
-var postBack = require('./postBack');
+var postBack = require('./postback');
 var util = require('../util');
 
 exports.start = function() {
