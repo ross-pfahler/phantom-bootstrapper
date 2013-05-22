@@ -4,8 +4,10 @@ var url = require('url');
 
 exports.setRedisServer = function() {
     if (!process.env.REDISTOGO_URL) {
-        // Use default local settings
-        return;
+        console.error('Missing REDISTOGO_URL..nogo');
+        console.log('Is it added to your env? (for localdev, this is \
+            export REDISTOGO_URL=redis://localhost:6379)');
+        process.exit();
     }
 
     kue.redis.createClient = function() {
