@@ -20,6 +20,10 @@ postbackServer.post('/handleBootstrap/', function(req, res) {
         console.log('Query data: ' + JSON.stringify(req.query));
         console.log('Some html too (len=' + data.length + ')');
     });
+
+    res.json(200, {
+        'data': 'gotitthanks'
+    });
 });
 
 postbackServer.listen(3002);
@@ -38,7 +42,7 @@ var sendReq = function() {
     };
 
     var queryString = querystring.stringify(queryObj);
-    var url = 'http://localhost:3000/api/v1.0/bootstrap/fyre.conv/?' + queryString;
+    var url = 'http://localhost:5000/api/v1.0/bootstrap/fyre.conv/?' + queryString;
 
     http.get(url, function(res) {
         res.on('data', function(chunky) {

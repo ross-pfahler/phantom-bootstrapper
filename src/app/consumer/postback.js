@@ -41,8 +41,7 @@ module.exports = function(callbackUrl, queryParams, rawData) {
     });
 
     console.log('Sending raw data: ' + rawData);
-    req.write(rawData);
-    req.end();
+    req.end(rawData);
 };
 
 /**
