@@ -13,7 +13,9 @@ test:
 
 deploy:
 	@echo "Deploying heroku master"
+	@heroku maintenance:on
 	@git push heroku master
+	@heroku maintenance:off
 	@heroku config:set NODE_ENV=production
 
 run:
