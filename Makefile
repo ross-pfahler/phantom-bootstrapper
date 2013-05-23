@@ -1,4 +1,4 @@
-.PHONY: install test deploy
+.PHONY: install test deploy run
 
 TESTS := $(shell find ./src -name "test.js")
 
@@ -15,3 +15,7 @@ deploy:
 	@echo "Deploying heroku master"
 	@git push heroku master
 	@heroku config:set NODE_ENV=production
+
+run:
+	@echo "Running locally via foreman"
+	@node_modules/.bin/nf start
