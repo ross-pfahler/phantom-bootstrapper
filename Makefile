@@ -21,3 +21,11 @@ deploy:
 run:
 	@echo "Running locally via foreman"
 	@node_modules/.bin/nf start
+
+buildboxes:
+	@heroku addons:add redistogo
+	@heroku ps:scale web=1 worker=1
+
+removeboxes:
+	@heroku addons:remove redistogo
+	@heroku ps:scale web=0 worker=0
