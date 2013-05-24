@@ -38,10 +38,14 @@ page.open(url, function(status) {
             return document.getElementsByClassName('fyre-comment-stream').length > 0;
         });
     }, function() {
-        var html = page.evaluate(function() {
-            return document.getElementById('bs').innerHTML;
-        });
 
+        // So we wait (by default) for 3000ms for the page to catch up.
+        // This allows one or two stream requests to make their way in.
+        var html = page.evaluate(function() {
+            setTimeout(function() {
+                return document.getElementById('bs').innerHTML;
+            }, 3500);
+        });
         phantom.exit();
     });
 });
