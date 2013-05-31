@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+        <script src="http://zor.fyre.co/wjs/v3.0/javascripts/livefyre.js"></script>
     </head>
     <body>
         <script>
             var lf_config = [{
-                "collectionMeta": "{collectionMeta}",
+                "signed": false,
                 "siteId": "{siteId}",
                 "articleId": "{articleId}",
-                "checksum": "{checksum}",
                 "bsMode": true,
                 "el": "bs"
             }];
             
-            var conv = fyre.conv.load({}, lf_config);
+            var conv = fyre.conv.load({
+                "networkId": "{networkId}"
+            }, lf_config);
         </script>
         <div id="bs">
             <script>
                 (function() {
-                var a=this;var b,c,d,e,f;function g(){return a.navigator?a.navigator.userAgent:null}f=e=d=c=b=!1;var h;if(h=g()){var i=a.navigator;b=0==h.indexOf("Opera");c=!b&&-1!=h.indexOf("MSIE");e=(d=!b&&-1!=h.indexOf("WebKit"))&&-1!=h.indexOf("Mobile");f=!b&&!d&&"Gecko"==i.product}var j=c,k=f,l=d,m=e;var n;if(b&&a.opera){var o=a.opera.version;"function"==typeof o&&o()}else k?n=/rv\:([^\);]+)(\)|;)/:j?n=/MSIE\s+([^\);]+)(\)|;)/:l&&(n=/WebKit\/(\S+)/),n&&n.exec(g());var p=document,q=p.createElement("link");q.rel="stylesheet";q.type="text/css";q.href="{{ asset_host }}/wjs/v3.0/css/livefyre_"+(m?"mobile":"embed")+".css";q.media="all";p.getElementsByTagName("head")[0].appendChild(q);var r="header hgroup footer article section aside nav figure figcaption embed audio video canvas details summary time mark".split(" "),s=p.createDocumentFragment(),t;for(t=0; t<r.length; t++){s.appendChild(p.createElement(r[t]))};
+                var p=document;var r="header hgroup footer article section aside nav figure figcaption embed audio video canvas details summary time mark".split(" "),s=p.createDocumentFragment(),t;for(t=0; t<r.length; t++){s.appendChild(p.createElement(r[t]))};
                 })();
             </script>
         </div>

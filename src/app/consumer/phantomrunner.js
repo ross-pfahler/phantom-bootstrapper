@@ -17,7 +17,7 @@ exports.run = function(type, data, callback) {
     var childArgs = [
         __dirname + '/../../phantom/bootstrapper.js',
         type,
-        JSON.stringify(data)
+        encodeURIComponent(JSON.stringify(data))
     ];
 
     console.log('Running phantom child proc to get bs data');

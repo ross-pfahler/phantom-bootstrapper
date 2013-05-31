@@ -39,7 +39,6 @@ module.exports = function(callbackUrl, queryParams, rawData) {
         console.log('Problem with postback request: msg=' + e.message + ' url=' + parsedUrl);
     });
 
-    console.log('Sending raw data: ' + rawData);
     req.end(rawData);
 };
 

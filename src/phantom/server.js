@@ -15,7 +15,7 @@ var getTmplNameFromUrl = function(url) {
         var parts = url.split('/');
         return parts[1].split('?')[0];
     } catch (e) {
-        console.log('Cannot parse malformed url', url);
+        console.error('Cannot parse malformed url', url);
         throw e;
     }
 };
@@ -29,7 +29,7 @@ var getCfgObjectFromUrl = function(url) {
         var config = url.split('config=')[1];
         return JSON.parse(decodeURIComponent(config));
     } catch (e) {
-        console.log('Cannot parse config object from url', url);
+        console.error('Cannot parse config object from url', url);
         throw e;
     }
 };
@@ -58,32 +58,25 @@ var replaceTmplWithObject = function(template, data) {
  */
 exports.create = function(port) {
     server.listen(port, function (request, response) {
-        var url = request.url;
-
-        console.log('Server: Got request at ' + new Date(), url);
-        
+        var url = request.url;        
         var tmplName = getTmplNameFromUrl(url);
         var path = fs.workingDirectory + '/src/phantom/templates/' + tmplName;
 
         try {
             var template = fs.read(path);
         } catch (e) {
-            console.log('could not read from path');
+            console.error('could not read from path');
             response.write('Bad template path');
             respose.close();
         }
+
         var config = getCfgObjectFromUrl(url);
-
-        console.log('Server: Rendering template ' + path + ' with config ' + config);
-
         var data = replaceTmplWithObject(template, config);
         response.statusCode = 200;
         response.headers = {
             'Cache': 'no-cache',
             'Content-Type': 'text/html'
         };
-
-        console.log('Server: sending data...');
         response.write(data);
         response.close();
     });

@@ -11,24 +11,22 @@ var module = system.args[1];
 var config = system.args[2];
 
 if (!module) {
-    console.log('Missing module def');
-    phantom.exit();
+    console.error('missing module');
+    phantom.exit(1);
 }
 
 if (!config) {
-    console.log('Missing config def');
-    phantom.exit();
+    console.error('missing config');
+    phantom.exit(1);
 }
 
+config = decodeURIComponent(config);
 var url = 'http://localhost:' + port + '/' + module + '.html?config=' + config;
-console.log('Bootstrapper: requesting url', url);
-
 page.open(url, function(status) {
-    console.log('got status: ' + status);
 
     if (status !== 'success') {
-        console.log('No bs page for this module', module);
-        phantom.exit();
+        console.error('Page could not be opened');
+        phantom.exit(1);
     }
 
     // TODO(rrp): Generalize this bit
@@ -38,14 +36,10 @@ page.open(url, function(status) {
             return document.getElementsByClassName('fyre-comment-stream').length > 0;
         });
     }, function() {
-
-        // So we wait (by default) for 3000ms for the page to catch up.
-        // This allows one or two stream requests to make their way in.
         var html = page.evaluate(function() {
-            setTimeout(function() {
-                return document.getElementById('bs').innerHTML;
-            }, 3500);
+            return document.getElementById('bs').innerHTML;
         });
+        console.log(html);
         phantom.exit();
     });
 });
