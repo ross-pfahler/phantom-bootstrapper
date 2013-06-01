@@ -33,7 +33,8 @@ var sendReq = function() {
     var data = {
         "siteId": "313879",
         "articleId": 34,
-        "networkId": "livefyre.com"
+        "networkId": "livefyre.com",
+        "app": "main"
     };
 
     var queryObj = {
